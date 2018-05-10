@@ -4,7 +4,7 @@
 #
 Name     : gsound
 Version  : 1.0.2
-Release  : 1
+Release  : 2
 URL      : https://download.gnome.org/sources/gsound/1.0/gsound-1.0.2.tar.xz
 Source0  : https://download.gnome.org/sources/gsound/1.0/gsound-1.0.2.tar.xz
 Summary  : GObject wrapper for libcanberra
