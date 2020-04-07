@@ -4,10 +4,10 @@
 #
 Name     : gsound
 Version  : 1.0.2
-Release  : 4
+Release  : 5
 URL      : https://download.gnome.org/sources/gsound/1.0/gsound-1.0.2.tar.xz
 Source0  : https://download.gnome.org/sources/gsound/1.0/gsound-1.0.2.tar.xz
-Summary  : Small library for playing system sounds
+Summary  : GObject wrapper for libcanberra
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: gsound-bin = %{version}-%{release}
@@ -90,35 +90,37 @@ license components for the gsound package.
 
 %prep
 %setup -q -n gsound-1.0.2
+cd %{_builddir}/gsound-1.0.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1557009431
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1586233302
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1557009431
+export SOURCE_DATE_EPOCH=1586233302
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gsound
-cp COPYING %{buildroot}/usr/share/package-licenses/gsound/COPYING
+cp %{_builddir}/gsound-1.0.2/COPYING %{buildroot}/usr/share/package-licenses/gsound/070409dd4c0816a175241e6b8c7d9d5649222cce
 %make_install
 
 %files
@@ -137,7 +139,9 @@ cp COPYING %{buildroot}/usr/share/package-licenses/gsound/COPYING
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/gsound-attr.h
+/usr/include/gsound-context.h
+/usr/include/gsound.h
 /usr/lib64/libgsound.so
 /usr/lib64/pkgconfig/gsound.pc
 
@@ -169,4 +173,4 @@ cp COPYING %{buildroot}/usr/share/package-licenses/gsound/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/gsound/COPYING
+/usr/share/package-licenses/gsound/070409dd4c0816a175241e6b8c7d9d5649222cce
