@@ -4,7 +4,7 @@
 #
 Name     : gsound
 Version  : 1.0.3
-Release  : 8
+Release  : 9
 URL      : https://download.gnome.org/sources/gsound/1.0/gsound-1.0.3.tar.xz
 Source0  : https://download.gnome.org/sources/gsound/1.0/gsound-1.0.3.tar.xz
 Summary  : No detailed summary available
