@@ -4,7 +4,7 @@
 #
 Name     : gsound
 Version  : 1.0.3
-Release  : 9
+Release  : 10
 URL      : https://download.gnome.org/sources/gsound/1.0/gsound-1.0.3.tar.xz
 Source0  : https://download.gnome.org/sources/gsound/1.0/gsound-1.0.3.tar.xz
 Summary  : No detailed summary available
@@ -84,7 +84,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1629298061
+export SOURCE_DATE_EPOCH=1664152439
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -98,7 +98,7 @@ ninja -v -C builddir
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/gsound
-cp %{_builddir}/gsound-1.0.3/COPYING %{buildroot}/usr/share/package-licenses/gsound/070409dd4c0816a175241e6b8c7d9d5649222cce
+cp %{_builddir}/gsound-%{version}/COPYING %{buildroot}/usr/share/package-licenses/gsound/070409dd4c0816a175241e6b8c7d9d5649222cce || :
 DESTDIR=%{buildroot} ninja -C builddir install
 
 %files
